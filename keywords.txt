@@ -1,0 +1,22 @@
+#############################################
+# Class
+#############################################
+
+esp_cytron_motor	KEYWORD3
+
+#######################################
+# Methods and Functions
+#######################################
+
+Setup	KEYWORD2
+Write	KEYWORD2
+Read	KEYWORD2
+
+#############################################
+# Constants
+#############################################
+ 
+MOTOR_CHANNEL_0	LITERAL1
+MOTOR_CHANNEL_1	LITERAL1
+ENCODER_CHANNEL_0 LITERAL1
+ENCODER_CHANNEL_1 LITERAL1
