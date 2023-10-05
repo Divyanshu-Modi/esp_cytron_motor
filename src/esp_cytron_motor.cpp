@@ -57,10 +57,13 @@ void esp_cytron_motor :: Setup(esp_cytron_type device_type, uint8_t pin1, uint8_
 {
 	switch (device_type) {
 	case MOTOR_CHANNEL_0: {
-		if (mot[0].dir_pin == 255)
+		if (mot[0].dir_pin == 255) {
 			mot[0].dir_pin = pin1;
+			pinMode(pin1, OUTPUT);
+		}
 
 		if (mot[0].pwm_pin == 255) {
+			pinMode(pin2, OUTPUT);
 			ledcSetup(mot[0].channel, LEDC_RES, LEDC_FREQ);
 			ledcAttachPin(pin2, mot[0].channel);
 			mot[0].pwm_pin = pin2;
@@ -68,10 +71,13 @@ void esp_cytron_motor :: Setup(esp_cytron_type device_type, uint8_t pin1, uint8_
 		break;
 	}
 	case MOTOR_CHANNEL_1: {
-		if (mot[1].dir_pin == 255)
+		if (mot[1].dir_pin == 255) {
 			mot[1].dir_pin = pin1;
+			pinMode(pin1, OUTPUT);
+		}
 
 		if (mot[1].pwm_pin == 255) {
+			pinMode(pin2, OUTPUT);
 			ledcSetup(mot[1].channel, LEDC_RES, LEDC_FREQ);
 			ledcAttachPin(pin2, mot[1].channel);
 			mot[1].pwm_pin = pin2;
@@ -82,10 +88,13 @@ void esp_cytron_motor :: Setup(esp_cytron_type device_type, uint8_t pin1, uint8_
 		if (encoder[0].channel_0 == 255) {
 			attachInterrupt(digitalPinToInterrupt(pin1), esp_cytron_encoder_isr0, CHANGE);
 			encoder[0].channel_0 = pin1;
+			pinMode(pin1, INPUT_PULLUP);
 		}
 
-		if (encoder[0].channel_1 == 255)
+		if (encoder[0].channel_1 == 255) {
 			encoder[0].channel_1 = pin2;
+			pinMode(pin2, INPUT_PULLUP);
+		}
 
 		break;
 	}
@@ -93,10 +102,13 @@ void esp_cytron_motor :: Setup(esp_cytron_type device_type, uint8_t pin1, uint8_
 		if (encoder[1].channel_0 == 255) {
 			encoder[1].channel_0 = pin1;
 			attachInterrupt(digitalPinToInterrupt(pin1), esp_cytron_encoder_isr1, CHANGE);
+			pinMode(pin1, INPUT_PULLUP);
 		}
 
-		if (encoder[1].channel_1 == 255)
+		if (encoder[1].channel_1 == 255) {
 			encoder[1].channel_1 = pin2;
+			pinMode(pin2, INPUT_PULLUP);
+		}
 
 		break;
 	}
